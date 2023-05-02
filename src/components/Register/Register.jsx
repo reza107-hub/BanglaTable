@@ -1,8 +1,60 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../Styles/Styles.css";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useContext, useState } from "react";
+
+import Swal from "sweetalert2";
+import { AuthContext } from "../../AuthProbider/AuthProvider";
 
 export default function Register() {
+  const [accepted, setAccepted] = useState(false);
+  const navigate = useNavigate();
+  const { createUser, updateProf } = useContext(AuthContext);
+  const handleCreateUser = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (!/(?=.*[A-Z])/.test(password)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please add at least one uppercase!",
+      });
+    } else if (!/(?=.*[0-9])/.test(password)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please add at least one numbers!",
+      });
+    } else if (password.length < 8) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please add at least 8 characters in your password!",
+      });
+    } else if (!/(?=.*[!@#$&*])/.test(password)) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please add a special character!",
+      });
+    }
+    createUser(email, password)
+      .then((r) => {
+        updateProf(name, photo);
+        Swal.fire("Good job!", "You created an account", "success");
+        console.log(r.user);
+        navigate("/login");
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleTerms = (e) => {
+    setAccepted(e.target.checked);
+    console.log(e.target.checked);
+  };
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -18,7 +70,12 @@ export default function Register() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleCreateUser}
+            className="space-y-6"
+            action="#"
+            method="POST"
+          >
             <div>
               <label
                 htmlFor="name"
@@ -96,10 +153,27 @@ export default function Register() {
               </div>
             </div>
 
+            <div className="font-thin text-xs flex gap-3">
+              <input
+                onClick={handleTerms}
+                type="checkbox"
+                name="accept"
+                id=""
+              />{" "}
+              Accept The {/* The button to open modal */}
+              <label
+                htmlFor="my-modal-6"
+                className="link  hover:text-[#D54215]"
+              >
+                Term and Conditions
+              </label>
+            </div>
+
             <div>
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#D54215] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f49275] hover:text-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D54215]"
+                disabled={!accepted}
               >
                 Sign up
               </button>
@@ -115,6 +189,77 @@ export default function Register() {
               Sign in
             </Link>
           </p>
+        </div>
+      </div>
+
+      {/* Put this part before </body> tag */}
+      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">General terms and conditions!</h3>
+          <div className="p-4">
+            <ol className="list-decimal">
+              <li>
+                Content: All recipes and content on this website are provided
+                for informational purposes only. The website owners do not
+                guarantee the accuracy or completeness of any information
+                provided on the website.
+              </li>
+              <li>
+                Intellectual Property: All content, including recipes, images,
+                and other materials on this website, are owned by the website
+                owners and are protected by copyright and other intellectual
+                property laws. No content may be copied, reproduced,
+                distributed, or transmitted without the prior written consent of
+                the website owners.
+              </li>
+              <li>
+                Intellectual Property: All content, including recipes, images,
+                and other materials on this website, are owned by the website
+                owners and are protected by copyright and other intellectual
+                property laws. No content may be copied, reproduced,
+                distributed, or transmitted without the prior written consent of
+                the website owners.
+              </li>
+              <li>
+                User Submissions: Users may submit recipes or other content to
+                the website owners for publication on the website. By submitting
+                content, users grant the website owners a non-exclusive,
+                worldwide, royalty-free, perpetual, irrevocable, and fully
+                sublicensable right to use, reproduce, modify, adapt, publish,
+                translate, create derivative works from, distribute, and display
+                such content throughout the world in any media.
+              </li>
+              <li>
+                User Conduct: Users of this website must comply with all
+                applicable laws and regulations and must not use the website for
+                any unlawful purpose. Users must not post any content that is
+                defamatory, obscene, pornographic, or otherwise offensive.
+              </li>
+              <li>
+                Liability: The website owners are not liable for any damages
+                arising from the use of this website or any content, including
+                recipes, on the website. The website owners are not responsible
+                for any loss or damage caused by viruses, hacking, or other
+                security breaches.
+              </li>
+              <li>
+                Changes to Terms: The website owners may modify these terms and
+                conditions at any time without notice. Users are responsible for
+                regularly reviewing these terms and conditions.
+              </li>
+              <li>
+                Governing Law: These terms and conditions are governed by the
+                laws of the jurisdiction in which the website owners are
+                located.
+              </li>
+            </ol>
+          </div>
+          <div className="modal-action">
+            <label htmlFor="my-modal-6" className="btn-main">
+              Ok
+            </label>
+          </div>
         </div>
       </div>
     </>
