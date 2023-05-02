@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="mt-2">
       <Navbar></Navbar>
-      <div className="min-h-[calc(100vh-66px)]">
+      <div className="min-h-[calc(100vh-70px)]">
         <Outlet />
       </div>
       <Footer />

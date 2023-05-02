@@ -1,6 +1,7 @@
 import { Disclosure, Menu } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import "../../Styles/Styles.css";
 
 const user = null;
 
@@ -41,10 +42,10 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex  lg:ms-0 flex-shrink-0 items-center">
                   <p className="hidden h-8 w-auto lg:block text-[#D54215] font-bold text-xl">
-                    Bangla Table
+                    <Link to="/">Bangla Table</Link>
                   </p>
                   <p className="block h-8 w-auto lg:hidden text-[#D54215] font-bold text-xl">
-                    Bangla Table
+                    <Link to="/">Bangla Table</Link>
                   </p>
                 </div>
                 <div className="hidden ms-60 sm:ml-[40%] sm:block">
@@ -81,9 +82,9 @@ export default function Navbar() {
                       </div>
                     </>
                   ) : (
-                    <button className="bg-[#D54215] text-white font-medium hover:bg-[#e8937a] hover:text-neutral-700 px-6 py-2 rounded-lg">
-                      Login
-                    </button>
+                    <Link to="/login">
+                      <button className="btn-main">Login</button>
+                    </Link>
                   )}
                 </Menu>
               </div>
