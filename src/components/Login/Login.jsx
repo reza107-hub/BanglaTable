@@ -1,8 +1,61 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../Styles/Styles.css";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProbider/AuthProvider";
+import Swal from "sweetalert2";
 
 export default function Login() {
+  const { signIn, logInWithGoogle, logInWithGithub } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const handleLogIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    e.target.reset();
+    signIn(email, password)
+      .then((r) => {
+        Swal.fire("Good job!", "You logged in your account", "success");
+        navigate(from, { replace: true });
+      })
+      .catch((e) => {
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${e.message}`,
+        });
+      });
+  };
+  const handleLogInGoogle = () => {
+    logInWithGoogle()
+      .then((r) => {
+        Swal.fire("Good job!", "You logged in your account", "success");
+        navigate(from, { replace: true });
+      })
+      .catch((e) => {
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${e.message}`,
+        });
+      });
+  };
+  const handleLogInGithub = () => {
+    logInWithGithub()
+      .then((r) => {
+        Swal.fire("Good job!", "You logged in your account", "success");
+        navigate(from, { replace: true });
+      })
+      .catch((e) => {
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${e.message}`,
+        });
+      });
+  };
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -18,7 +71,12 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleLogIn}
+            className="space-y-6"
+            action="#"
+            method="POST"
+          >
             <div>
               <label
                 htmlFor="email"
@@ -88,12 +146,18 @@ export default function Login() {
           </p>
 
           <div className="divider">OR</div>
-          <button className="btn-second w-full flex gap-2 justify-center items-center">
+          <button
+            onClick={handleLogInGoogle}
+            className="btn-second w-full flex gap-2 justify-center items-center"
+          >
             <FaGoogle /> Login with Google
           </button>
           <br />
           <br />
-          <button className="btn-second w-full flex gap-2 justify-center items-center">
+          <button
+            onClick={handleLogInGithub}
+            className="btn-second w-full flex gap-2 justify-center items-center"
+          >
             <FaGithub /> Login with Github
           </button>
         </div>

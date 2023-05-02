@@ -45,15 +45,20 @@ export default function Register() {
       .then((r) => {
         updateProf(name, photo);
         Swal.fire("Good job!", "You created an account", "success");
-        console.log(r.user);
+
         navigate("/login");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        return Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please add a special character!",
+        });
+      });
   };
 
   const handleTerms = (e) => {
     setAccepted(e.target.checked);
-    console.log(e.target.checked);
   };
   return (
     <>
