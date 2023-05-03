@@ -59,7 +59,7 @@ export default function Navbar() {
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          "text-black hover:bg-[#D54215] hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                          "text-black hover:bg-[#D54215] hover:text-white rounded-md px-3 py-2 text-lg font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -77,7 +77,10 @@ export default function Navbar() {
                 >
                   {user ? (
                     <>
-                      <button onClick={handleLogOut} className="btn-main">
+                      <button
+                        onClick={handleLogOut}
+                        className="btn-main hidden lg:block"
+                      >
                         Log out
                       </button>
                     </>
@@ -121,6 +124,18 @@ export default function Navbar() {
                   <Link to={item.href}>{item.name}</Link>
                 </Disclosure.Button>
               ))}
+              {user ? (
+                <>
+                  <button
+                    onClick={handleLogOut}
+                    className="text-black hover:bg-[#D54215] hover:text-white  block rounded-md px-3 py-2 text-base font-medium w-full text-start"
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           </Disclosure.Panel>
         </>

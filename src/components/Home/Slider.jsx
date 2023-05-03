@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,22 +12,21 @@ import { Autoplay } from "swiper";
 
 export default function Slider() {
   return (
-    <>
+    <div>
       <Swiper
-        spaceBetween={30}
         centeredSlides={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
-        className="mySwiper"
+        className="mySwiper max-w-xs"
       >
         <SwiperSlide>Backed</SwiperSlide>
         <SwiperSlide>Boiled</SwiperSlide>
         <SwiperSlide>Steamed</SwiperSlide>
         <SwiperSlide>Fried</SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }

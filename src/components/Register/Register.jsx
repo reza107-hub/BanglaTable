@@ -45,14 +45,13 @@ export default function Register() {
       .then((r) => {
         updateProf(name, photo);
         Swal.fire("Good job!", "You created an account", "success");
-
-        navigate("/login");
+        navigate("/");
       })
       .catch((e) => {
         return Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Please add a special character!",
+          text: `${e.message}`,
         });
       });
   };

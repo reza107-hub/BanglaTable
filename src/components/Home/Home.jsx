@@ -1,28 +1,29 @@
-import React from "react";
-import Slider from "./Slider";
+import React, { useEffect, useState } from "react";
+
+import Banner from "../Banner/Banner";
+import ChefCard from "./ChefCard";
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/chefs")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
   return (
-    <div
-      className="hero  min-h-[80vh] mx-auto "
-      style={{
-        backgroundImage: `url("http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg")`,
-        backgroundSize: "cover",
-      }}
-    >
-      <div className="hero-overlay bg-opacity-50"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md">
-          <h1 className="mb-5 text-5xl text-[#D54215] font-bold">
-            <Slider />
-          </h1>
-          <p className="mb-5 text-black font-bold text-4xl">
-            no matter how you cook, Bangla Table has many the recipes
-          </p>
-          <button className="btn-main">Explore recipes</button>
+    <>
+      <div>
+        <Banner />
+      </div>
+      <div className="mt-28">
+        <p className="text-5xl font-bold text-center">Chef Spotlight</p>
+        <div className="grid lg:grid-cols-3 p-2 mx-auto gap-20 mt-10 w-[95%]  lg:w-[80%]">
+          {data.map((chef) => (
+            <ChefCard key={chef.chef_id} chef={chef}></ChefCard>
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
