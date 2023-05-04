@@ -24,6 +24,7 @@ const Home = () => {
           ))}
         </div>
         <div className="mt-28">
+        <p className="lg:text-5xl text-2xl font-bold text-center">Featured Recipes</p>
           <RecipesSection></RecipesSection>
         </div>
       </div>

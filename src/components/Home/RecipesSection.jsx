@@ -9,7 +9,7 @@ const RecipesSection = () => {
       .then((data) => setRecipes(data));
   }, []);
   return (
-    <div className="lg:w-[900px] w-[90%] mx-auto grid lg:grid-cols-4 gap-y-10">
+    <div className="lg:w-[900px] w-[90%] mt-10 mx-auto grid lg:grid-cols-4 gap-y-10">
       {recipes.map((recipe) => (
         <SingleRecipe key={recipe.id} recipe={recipe}></SingleRecipe>
       ))}
