@@ -27,22 +27,22 @@ const ChefDetails = () => {
     <div>
       <div className="flex flex-col lg:flex-row items-center gap-20 lg:p-10 lg:w-[95%] mx-auto">
         {/* chef pic */}
-        <div className="w-[817px]">
+        <div className="lg:w-[817px]">
           <img src={chefDetails.image} alt="" />
         </div>
         {/* chef details */}
-        <div className="w-[1000px]">
+        <div className="lg:w-[1000px] p-2 lg:p-0">
           <p className="card-title text-[#D54215]">Name: {chefDetails.name}</p>
           <p className="my-5">
             <span className="font-bold">Bio</span>:{" "}
             <span className="text-[#4E4E4F]">{chefDetails.bio}</span>
           </p>
-          <div className="card-actions justify-between">
+          <div className="lg:card-actions justify-between">
             <p className="flex gap-3 items-center">
               <FaThumbsUp className="text-[#D54215]"></FaThumbsUp>{" "}
               {chefDetails.likes} likes
             </p>
-            <p className="flex gap-3 items-center">
+            <p className="flex gap-3 my-5 lg:my-0 items-center">
               Number Of Recipes: {chefDetails.recipes}{" "}
               <BiFoodMenu className="text-[#D54215]"></BiFoodMenu>
             </p>
