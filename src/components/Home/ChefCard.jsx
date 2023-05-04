@@ -23,10 +23,12 @@ const ChefCard = ({ chef }) => {
         </div>
         <div className="divider"></div>
         <div className="card-actions justify-end">
-          <button className="btn-second flex items-center gap-3">
-            <Link to={`/chef/${chef.chef_id}`}>View Recipes</Link>{" "}
-            <FaArrowRight />
-          </button>
+          <Link to={`/chef/${chef.chef_id}`}>
+            <button className="btn-second flex items-center gap-3">
+              View Recipes
+              <FaArrowRight />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
