@@ -91,7 +91,10 @@ export default function Navbar() {
                   )}
                   {user ? (
                     <>
-                      <div className="tooltip" data-tip={user?.displayName}>
+                      <div
+                        className="tooltip tooltip-left lg:tooltip-top"
+                        data-tip={user?.displayName}
+                      >
                         <Menu.Button className="flex rounded-full bg-gray-800 text-sm   focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="sr-only">Open user menu</span>
                           <img

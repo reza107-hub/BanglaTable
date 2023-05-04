@@ -2,7 +2,6 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 
 const ChefCard = ({ chef }) => {
-  console.log(chef);
   return (
     <div className="card lg:w-96 border hover:border-[#D74C22] border-solid pt-5 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 duration-300">
       <figure className="px-10 pt-10 h-60">
