@@ -198,8 +198,8 @@ export default function Register() {
             <div>
               <button
                 type="submit"
-                className={`btn bg-[#D74C22] hover:bg-[#E29F28] w-full ${
-                  accepted ? "" : "btn-disabled"
+                className={`btn  w-full ${
+                  accepted ? "bg-[#D74C22] hover:bg-[#E29F28]" : "btn-disabled"
                 }`}
               >
                 Sign up
