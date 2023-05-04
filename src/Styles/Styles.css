@@ -1,6 +1,7 @@
 .btn-main {
-  @apply bg-[#D54215] text-white font-medium hover:bg-[#e8937a] hover:text-neutral-700 lg:px-6 px-2 py-2 rounded-lg;
+  @apply bg-[#D54215] text-white font-medium hover:bg-[#E29F28]  lg:px-6 px-2 py-2 rounded-lg;
 }
 .btn-second {
   @apply bg-[#faf9f9] border border-solid border-black text-black font-medium hover:border-[#D54215] hover:text-[#D54215] px-6 py-2 rounded-lg;
 }
+

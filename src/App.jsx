@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="mt-2">
       <Navbar></Navbar>
-      <div className="my-10">
+      <div className="mb-10">
         <Outlet />
       </div>
       <Footer />

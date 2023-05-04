@@ -19,7 +19,7 @@ const ChefCard = ({ chef }) => {
         </div>
         <div className="divider"></div>
         <div className="card-actions justify-end">
-          <button className="btn-main flex items-center gap-3">View Recipes <FaArrowRight/></button>
+          <button className="btn-second flex items-center gap-3">View Recipes <FaArrowRight/></button>
         </div>
       </div>
     </div>

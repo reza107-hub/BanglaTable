@@ -1,13 +1,12 @@
 import { Disclosure, Menu } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../Styles/Styles.css";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProbider/AuthProvider";
 
 const navigation = [
   { name: "Home", href: "/" },
-
   { name: "Blog", href: "/blog" },
 ];
 
@@ -53,18 +52,19 @@ export default function Navbar() {
                   </p>
                 </div>
                 <div className="hidden ms-60 sm:ml-[40%] sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex items-center space-x-4">
                     {navigation.map((item) => (
-                      <Link
+                      <NavLink
                         key={item.name}
                         to={item.href}
-                        className={classNames(
-                          "text-black hover:bg-[#D54215] hover:text-white rounded-md px-3 py-2 text-lg font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-[#D54215] text-lg font-medium"
+                            : "text-black hover:bg-[#D54215] hover:text-white rounded-md px-3 py-2 text-lg font-medium"
+                        }
                       >
                         {item.name}
-                      </Link>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -118,20 +118,27 @@ export default function Navbar() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
                   className={classNames(
-                    "text-black hover:bg-[#D54215] hover:text-white  block rounded-md px-3 py-2 text-base font-medium"
+                    "text-black hover:bg-[#D54215] hover:text-white block  rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? "page" : undefined}
                 >
-                  <Link to={item.href}>{item.name}</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#D54215] text-lg font-medium hover:bg-[#D54215] hover:text-white"
+                        : "w-full flex justify-start"
+                    }
+                    to={item.href}
+                  >
+                    {item.name}
+                  </NavLink>
                 </Disclosure.Button>
               ))}
               {user ? (
                 <>
                   <button
                     onClick={handleLogOut}
-                    className="text-black hover:bg-[#D54215] hover:text-white  block rounded-md px-3 py-2 text-base font-medium w-full text-start"
+                    className="text-black hover:bg-[#D54215] hover:text-white  block rounded-md px-3 py-2 text-base font-medium  text-start"
                   >
                     Log out
                   </button>

@@ -1,14 +1,30 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "../Home/Slider";
 
 const Banner = () => {
+  const [bannerIndex, setBannerIndex] = useState(0);
+  const bannerImages = [
+    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg",
+    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/flat-lay-with-takeaway-food-on-wooden-background-food-delivery.jpg",
+    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/chinese-food-white-background.jpg",
+    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg"
+  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBannerIndex((prevIndex) =>
+        prevIndex === bannerImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // change the image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div
-      className="hero min-h-screen mx-auto relative overflow-hidden"
+      className="hero min-h-[80vh] mx-auto relative overflow-hidden"
       style={{
-        backgroundImage: `url("http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg")`,
-        animation: `slidein 10s linear infinite`,
+        backgroundImage: `url("${bannerImages[bannerIndex]}")`,
+        animation: `slidein 15s linear infinite`,
       }}
     >
       <div className="bg-white bg-opacity-60 absolute inset-0"></div>
