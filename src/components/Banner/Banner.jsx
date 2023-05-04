@@ -1,21 +1,20 @@
-
 import React, { useEffect, useState } from "react";
 import Slider from "../Home/Slider";
-
+const bannerImages = [
+  "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg",
+  "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/flat-lay-with-takeaway-food-on-wooden-background-food-delivery.jpg",
+  "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/chinese-food-white-background.jpg",
+  "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg",
+];
 const Banner = () => {
   const [bannerIndex, setBannerIndex] = useState(0);
-  const bannerImages = [
-    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg",
-    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/flat-lay-with-takeaway-food-on-wooden-background-food-delivery.jpg",
-    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/chinese-food-white-background.jpg",
-    "http://point.moxcreative.com/yumma/wp-content/uploads/sites/2/2022/04/concept-of-tasty-food-with-bell-pepper-on-white-background.jpg"
-  ];
+
   useEffect(() => {
     const interval = setInterval(() => {
       setBannerIndex((prevIndex) =>
         prevIndex === bannerImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // change the image every 5 seconds
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);

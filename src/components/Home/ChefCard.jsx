@@ -1,12 +1,15 @@
 import React from "react";
 import { FaArrowRight, FaHeart, FaThumbsUp } from "react-icons/fa";
+import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
 const ChefCard = ({ chef }) => {
   return (
     <div className="card lg:w-96 border hover:border-[#D74C22] border-solid pt-5 ">
       <figure className="px-10 pt-10 h-60">
-        <img src={chef.image} alt="" />
+        <LazyLoad offset={300}>
+          <img src={chef.image} alt="" />
+        </LazyLoad>
       </figure>
       <div className="card-body">
         <h2 className="card-title text-[#D74C22]">{chef.name}</h2>

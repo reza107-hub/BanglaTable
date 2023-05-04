@@ -7,6 +7,7 @@ import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Swal from "sweetalert2";
+import LazyLoad from "react-lazy-load";
 
 const ChefDetails = () => {
   const chefDetails = useLoaderData();
@@ -14,10 +15,10 @@ const ChefDetails = () => {
     const likeButton = event.currentTarget;
     likeButton.disabled = true;
     Swal.fire({
-      icon: 'success',
-      title: 'This recipe is your favorite!',
+      icon: "success",
+      title: "This recipe is your favorite!",
       toast: true,
-      position: 'top',
+      position: "top",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -28,7 +29,9 @@ const ChefDetails = () => {
       <div className="flex flex-col lg:flex-row items-center gap-20 lg:p-10 lg:w-[95%] mx-auto">
         {/* chef pic */}
         <div className="lg:w-[817px]">
+          <LazyLoad height={762}>
           <img src={chefDetails.image} alt="" />
+          </LazyLoad>
         </div>
         {/* chef details */}
         <div className="lg:w-[1000px] p-2 lg:p-0">

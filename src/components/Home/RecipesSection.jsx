@@ -4,7 +4,7 @@ import SingleRecipe from "./SingleRecipe";
 const RecipesSection = () => {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/recipes")
+    fetch("https://servcer-reza107-hub.vercel.app/recipes")
       .then((res) => res.json())
       .then((data) => setRecipes(data));
   }, []);

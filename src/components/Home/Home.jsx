@@ -8,7 +8,7 @@ import JoinUs from "./JoinUs";
 const Home = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/chefs")
+    fetch("https://servcer-reza107-hub.vercel.app/chefs")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
