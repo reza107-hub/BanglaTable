@@ -1,5 +1,6 @@
 import React from "react";
 import { FaArrowRight, FaHeart, FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ChefCard = ({ chef }) => {
   return (
@@ -14,12 +15,15 @@ const ChefCard = ({ chef }) => {
           <p className="">Experience: {chef.experience} years</p>
           <p className="">Number of Recipes: {chef.recipes}</p>
           <p className="flex items-center justify-center gap-2 badge border-[#D74C22] badge-outline">
-            {chef.likes} <FaThumbsUp className="text-blue-700" />
+            {chef.likes} <FaThumbsUp className="text-blue-400" />
           </p>
         </div>
         <div className="divider"></div>
         <div className="card-actions justify-end">
-          <button className="btn-second flex items-center gap-3">View Recipes <FaArrowRight/></button>
+          <button className="btn-second flex items-center gap-3">
+            <Link to={`/chef/${chef.chef_id}`}>View Recipes</Link>{" "}
+            <FaArrowRight />
+          </button>
         </div>
       </div>
     </div>
