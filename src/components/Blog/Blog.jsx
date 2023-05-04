@@ -125,8 +125,11 @@ const Blog = () => {
             loading ? (
               <span>Loading PDF...</span>
             ) : (
-              <button onClick={handleDownloadPdf}>
-                <FaDownload />
+              <button
+                className="flex items-center justify-center gap-2"
+                onClick={handleDownloadPdf}
+              >
+                Download Pdf <FaDownload />
               </button>
             )
           }
