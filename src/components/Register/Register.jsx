@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../Styles/Styles.css";
 import { useContext, useState } from "react";
 
@@ -8,6 +8,8 @@ import { AuthContext } from "../../AuthProbider/AuthProvider";
 export default function Register() {
   const [accepted, setAccepted] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { createUser, updateProf } = useContext(AuthContext);
   const handleCreateUser = (e) => {
     e.preventDefault();
@@ -16,42 +18,64 @@ export default function Register() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    if (!/(?=.*[A-Z])/.test(password)) {
+    if (!/(?=.*[!@#$&*])/.test(password)) {
       return Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please add at least one uppercase!",
+        title: "Please add a special character!",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
       });
     } else if (!/(?=.*[0-9])/.test(password)) {
       return Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please add at least one numbers!",
+        title: "Please add at least one numbers!",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
       });
-    } else if (password.length < 8) {
+    } else if (password.length < 6) {
       return Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please add at least 8 characters in your password!",
+        title: "Please add at least 6 characters in your password!",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
       });
-    } else if (!/(?=.*[!@#$&*])/.test(password)) {
+    } else if (!/(?=.*[A-Z])/.test(password)) {
       return Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Please add a special character!",
+        title: "Please add at least one uppercase!",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
       });
     }
     createUser(email, password)
       .then((r) => {
         updateProf(name, photo);
-        Swal.fire("Good job!", "You created an account", "success");
-        navigate("/");
+        Swal.fire({
+          icon: "success",
+          title: "You created an account",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
       })
       .catch((e) => {
         return Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: `${e.message}`,
+          title: `${e.message}`,
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
         });
       });
   };
@@ -176,8 +200,9 @@ export default function Register() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-[#D54215] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f49275] hover:text-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D54215]"
-                disabled={!accepted}
+                className={`btn bg-[#D74C22] hover:bg-[#E29F28] w-full ${
+                  accepted ? "" : "btn-disabled"
+                }`}
               >
                 Sign up
               </button>

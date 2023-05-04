@@ -9,11 +9,14 @@ import Register from "./components/Register/Register.jsx";
 import AuthProvider from "./AuthProbider/AuthProvider.jsx";
 import Blog from "./components/Blog/Blog.jsx";
 import ChefDetails from "./components/ChefDetails/ChefDetails.jsx";
+import PrivateRoute from "./PrivateRoute/PrivateRoute.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home /> },
       { path: "/blog", element: <Blog /> },
@@ -21,8 +24,13 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       {
         path: "/chef/:id",
-        element: <ChefDetails></ChefDetails>,
-        loader: ({params}) => fetch(`http://localhost:3000/chef/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ChefDetails></ChefDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/chef/${params.id}`),
       },
     ],
   },

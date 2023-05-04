@@ -17,14 +17,24 @@ export default function Login() {
     e.target.reset();
     signIn(email, password)
       .then((r) => {
-        Swal.fire("Good job!", "You logged in your account", "success");
+        Swal.fire({
+          icon: "success",
+          title: "You logged in your account",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(from, { replace: true });
       })
       .catch((e) => {
         return Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: `${e.message}`,
+          title: `${e.message}`,
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
         });
       });
   };
@@ -104,14 +114,6 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-[#D54215] hover:text-[#f49275]"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input

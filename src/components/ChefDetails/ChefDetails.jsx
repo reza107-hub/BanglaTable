@@ -5,24 +5,22 @@ import { GrUserExpert } from "react-icons/gr";
 import { MdOutlineFavorite } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
+import Swal from "sweetalert2";
 
 const ChefDetails = () => {
   const chefDetails = useLoaderData();
-  const [favorite, setFavorite] = useState(null);
   const handleToast = (event) => {
     const likeButton = event.currentTarget;
     likeButton.disabled = true;
-    setFavorite(likeButton.disabled);
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: 'This recipe is your favorite!',
-    //   toast: true,
-    //   position: 'top-end',
-    //   showConfirmButton: false,
-    //   timer: 1500,
-    // });
+    Swal.fire({
+      icon: 'success',
+      title: 'This recipe is your favorite!',
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
