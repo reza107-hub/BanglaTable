@@ -18,13 +18,13 @@ const ChefCard = ({ chef }) => {
           <p className="">Experience: {chef.experience} years</p>
           <p className="">Number of Recipes: {chef.recipes}</p>
           <p className="flex items-center justify-center gap-2 badge border-[#D74C22] badge-outline">
-            {chef.likes} <FaThumbsUp className="text-blue-400" />
+            {chef.likes} <FaThumbsUp className="text-[#D74C22]" />
           </p>
         </div>
         <div className="divider"></div>
         <div className="card-actions justify-end">
           <Link to={`/chef/${chef.chef_id}`}>
-            <button className="btn-second flex items-center gap-3">
+            <button className="btn-main flex items-center gap-3">
               View Recipes
               <FaArrowRight />
             </button>

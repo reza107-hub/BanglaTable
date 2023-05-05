@@ -8,7 +8,7 @@ import { AuthContext } from "../../AuthProbider/AuthProvider";
 export default function Register() {
   const [accepted, setAccepted] = useState(false);
   const navigate = useNavigate();
-  const { createUser, updateProf } = useContext(AuthContext);
+  const { createUser, updateProf, setLoading } = useContext(AuthContext);
   const handleCreateUser = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -16,10 +16,10 @@ export default function Register() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    if (!/(?=.*[!@#$&*])/.test(password)) {
+    if (password.length < 6) {
       return Swal.fire({
         icon: "error",
-        title: "Please add a special character!",
+        title: "Please add at least 6 characters in your password!",
         toast: true,
         position: "top",
         showConfirmButton: false,
@@ -34,10 +34,10 @@ export default function Register() {
         showConfirmButton: false,
         timer: 1500,
       });
-    } else if (password.length < 6) {
+    } else if (!/(?=.*[!@#$&*])/.test(password)) {
       return Swal.fire({
         icon: "error",
-        title: "Please add at least 6 characters in your password!",
+        title: "Please add a special character!",
         toast: true,
         position: "top",
         showConfirmButton: false,
@@ -64,6 +64,7 @@ export default function Register() {
           showConfirmButton: false,
           timer: 1500,
         });
+        setLoading(false);
         navigate("/");
       })
       .catch((e) => {
