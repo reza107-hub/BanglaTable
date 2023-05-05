@@ -41,7 +41,14 @@ export default function Login() {
   const handleLogInGoogle = () => {
     logInWithGoogle()
       .then((r) => {
-        Swal.fire("Good job!", "You logged in your account", "success");
+        Swal.fire({
+          icon: "success",
+          title: "You logged in your account",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(from, { replace: true });
       })
       .catch((e) => {
@@ -55,7 +62,14 @@ export default function Login() {
   const handleLogInGithub = () => {
     logInWithGithub()
       .then((r) => {
-        Swal.fire("Good job!", "You logged in your account", "success");
+        Swal.fire({
+          icon: "success",
+          title: "You logged in your account",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate(from, { replace: true });
       })
       .catch((e) => {
