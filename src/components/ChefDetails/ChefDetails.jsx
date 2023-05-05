@@ -29,8 +29,8 @@ const ChefDetails = () => {
       <div className="flex flex-col lg:flex-row items-center gap-20 lg:p-10 lg:w-[95%] mx-auto">
         {/* chef pic */}
         <div className="lg:w-[817px]">
-          <LazyLoad height={762}>
-          <img src={chefDetails.image} alt="" />
+          <LazyLoad>
+            <img src={chefDetails.image} alt="" />
           </LazyLoad>
         </div>
         {/* chef details */}
